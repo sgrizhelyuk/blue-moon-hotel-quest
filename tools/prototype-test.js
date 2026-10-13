@@ -38,6 +38,13 @@ async function boot() {
         virtualConsole: vc
       });
   const { window } = dom;
+  window.Image = function () {
+    this.complete = true;
+    this.onload = null;
+    this.onerror = null;
+    let _src = "";
+    Object.defineProperty(this, "src", { get() { return _src; }, set(v) { _src = v; } });
+  };
   window.addEventListener("error", (e) => {
     errors.push(e.error ? (e.error.stack || e.error.message) : e.message);
   });
@@ -385,6 +392,60 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     check("task proceeded after closing popup", BMH.state.pos > posBefore);
     check("no stale popup after task done", $("watsonPopup").hidden);
     check("no js errors (run 6)", errors.length === 0, errors.slice(0, 3).join(" | "));
+  }
+
+  console.log("");
+  console.log("=== Test 7: scene transition waits for assets (no sprite-before-bg) ===");
+  {
+    const { window, doc } = await boot();
+    const { $, click } = mkHelpers(window, doc);
+    const pending = [];
+    function FakeImage() {
+      this.complete = false;
+      this.onload = null;
+      this.onerror = null;
+      const self = this;
+      let _src = "";
+      Object.defineProperty(this, "src", {
+        get() { return _src; },
+        set(v) { _src = v; pending.push(self); }
+      });
+    }
+    const fire = () => {
+      let guard = 0;
+      while (pending.length && guard++ < 50) {
+        const im = pending.shift();
+        if (im.onload) { im.onload(); }
+      }
+    };
+    window.Image = FakeImage;
+
+    click($("btnStart"), "start");
+    await sleep(80);
+    check("dialogue hidden while first scene assets load", $("dialogue").hidden);
+    fire();
+    await sleep(80);
+    check("first scene rendered after assets ready", !$("dialogue").hidden);
+    check("prologue bg applied after assets ready", /BG_prologue/.test($("bg").src),
+      "bg src: " + $("bg").src);
+
+    const BMH = window.__BMH__;
+    BMH.state.scene = 4;
+    BMH.state.pos = 0;
+    BMH.state.clues = [];
+    click($("btnHome"), "home");
+    click($("btnContinue"), "continue");
+    await sleep(80);
+    check("sprites hidden while cast assets load", $("sprites").children.length === 0,
+      "sprites: " + $("sprites").children.length);
+    check("old bg kept while cast assets load", /BG_prologue/.test($("bg").src),
+      "bg src: " + $("bg").src);
+    fire();
+    await sleep(80);
+    check("cast shown only after assets ready", $("sprites").children.length === 2,
+      "sprites: " + $("sprites").children.length);
+    check("new bg applied after assets ready", /BG_lobby_crime/.test($("bg").src),
+      "bg src: " + $("bg").src);
   }
 
   console.log("");

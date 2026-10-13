@@ -110,20 +110,24 @@
   function renderScene() {
     var sc = SCENES[state.scene];
     if (!sc) { endGame(); return; }
-    els.bg.src = sc.bg;
     els.chapterLabel.textContent = sc.chapter + " · " + sc.title;
-    clearHotspots();
-    els.sprites.innerHTML = "";
-    sc.cast = sc.cast || {};
-    Object.keys(sc.cast).forEach(function (name) {
-      var c = sc.cast[name];
-      setSprite(name, c);
-    });
     chapterCard(sc.chapter + " — " + sc.title);
     playMusic(sc.music, 1400);
+    clearHotspots();
     els.taskPanel.hidden = true;
     els.choices.innerHTML = "";
-    renderItem();
+    els.dialogue.hidden = true;
+    clearSprites();
+    sc.cast = sc.cast || {};
+    var srcs = [sc.bg];
+    Object.keys(sc.cast).forEach(function (name) { srcs.push(sc.cast[name].img); });
+    loadSceneAssets(srcs, function () {
+      els.bg.src = sc.bg;
+      clearSprites();
+      Object.keys(sc.cast).forEach(function (name) { setSprite(name, sc.cast[name]); });
+      renderItem();
+      warmScene(state.scene + 1);
+    });
   }
 
   function chapterCard(text) {
@@ -151,6 +155,45 @@
     var scale = Math.max(vw / iw, vh / ih);
     var overflow = Math.max(0, ih * scale - vh) / 2;
     document.documentElement.style.setProperty("--bg-overflow", overflow.toFixed(1) + "px");
+  }
+
+  /* ---------------- asset preloading ---------------- */
+
+  var flowToken = 0;
+
+  function preload(src, done) {
+    var settled = false;
+    var finish = function () {
+      if (settled) { return; }
+      settled = true;
+      done();
+    };
+    if (!src) { finish(); return; }
+    var im = new Image();
+    im.onload = finish;
+    im.onerror = finish;
+    im.src = src;
+    if (im.complete) { finish(); }
+    setTimeout(finish, 2500);
+  }
+
+  function loadSceneAssets(srcs, cb) {
+    var token = ++flowToken;
+    var left = srcs.length;
+    if (!left) { cb(); return; }
+    srcs.forEach(function (src) {
+      preload(src, function () {
+        left--;
+        if (!left && token === flowToken) { cb(); }
+      });
+    });
+  }
+
+  function warmScene(idx) {
+    var sc = SCENES[idx];
+    if (!sc || !sc.bg) { return; }
+    var im = new Image();
+    im.src = sc.bg;
   }
 
   /* ---------------- music ---------------- */
@@ -243,7 +286,15 @@
     var item = sc.items[state.pos];
     state.dialogCtx = item;
 
-    if (item.bg) { els.bg.src = item.bg; state.pos++; renderItem(); return; }
+    if (item.bg) {
+      els.dialogue.hidden = true;
+      loadSceneAssets([item.bg], function () {
+        els.bg.src = item.bg;
+        state.pos++;
+        renderItem();
+      });
+      return;
+    }
     if (item.clearChars) { clearSprites(); delete sc.cast.Alex; delete sc.cast.Emma; delete sc.cast.Tim; state.pos++; renderItem(); return; }
     if (item.cast) {
       Object.keys(item.cast).forEach(function (n) {
@@ -779,6 +830,7 @@
       advance();
     };
     els.btnHome.onclick = function () {
+      flowToken++;
       save();
       stopMusic(600);
       if (state.typeTimer) { clearInterval(state.typeTimer); state.typeTimer = null; }
