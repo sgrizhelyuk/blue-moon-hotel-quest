@@ -27,7 +27,7 @@ Headless-прогон игры (полное прохождение, ошибо�
 npm install jsdom        # один раз, вне репозитория или в tools/
 node tools/prototype-test.js
 # либо против другого сервера:
-set BMH_URL=https://sgrizhelyuk.github.io/blue-moon-hotel-quest/
+set BMH_URL=https://sgrizhelyuk.github.io/moonlit-evening-mystery/
 node tools/prototype-test.js
 ```
 
@@ -61,7 +61,7 @@ english-quest/
 ## Деплой
 
 GitHub Pages (ветка `main`, корень репозитория):
-**https://sgrizhelyuk.github.io/blue-moon-hotel-quest/**
+**https://sgrizhelyuk.github.io/moonlit-evening-mystery/**
 
 ## Roadmap
 
