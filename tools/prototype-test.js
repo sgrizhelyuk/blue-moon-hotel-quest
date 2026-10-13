@@ -316,6 +316,51 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
   }
 
   console.log("");
+  console.log("=== Test 6: Watson popup over task panel (bug regression) ===");
+  {
+    const { window, doc, errors } = await boot();
+    const { $, click } = mkHelpers(window, doc);
+    const BMH = window.__BMH__;
+    click($("btnStart"), "start");
+    await sleep(40);
+    let steps = 0;
+    while (steps++ < 800) {
+      if (!$("taskPanel").hidden) break;
+      if (!$("watsonPopup").hidden) { click($("watsonClose")); continue; }
+      const st = BMH.state;
+      const item = BMH.scenes[st.scene].items[st.pos];
+      const choiceBtns = [...$("choices").children];
+      if (choiceBtns.length && item && item.opts) {
+        choiceBtns[item.opts.findIndex((o) => o.ok)].click();
+        await sleep(30);
+        continue;
+      }
+      click($("btnNext"), "next");
+      await sleep(20);
+    }
+    check("reached first task", !$("taskPanel").hidden);
+    const task = BMH.scenes[BMH.state.scene].items[BMH.state.pos].task;
+    check("first task is True/False", !!task && task.kind === "tf");
+    const posBefore = BMH.state.pos;
+    const rows = [...doc.getElementById("taskBody").querySelectorAll(".tf-row")];
+    for (let i = 0; i < rows.length; i++) {
+      const btns = rows[i].querySelectorAll(".mini-btn");
+      (task.stmts[i].a ? btns[1] : btns[0]).click();
+      await sleep(30);
+    }
+    check("watson popup visible after wrong last answer", !$("watsonPopup").hidden);
+    check("watson popup above task panel (z>=90)", parseInt($("watsonPopup").style.zIndex || "0", 10) >= 90,
+      "z=" + $("watsonPopup").style.zIndex);
+    check("task waits for popup to close", BMH.state.pos === posBefore && !$("taskPanel").hidden);
+    click($("watsonClose"), "close watson");
+    await sleep(700);
+    check("popup closed after click", $("watsonPopup").hidden);
+    check("task proceeded after closing popup", BMH.state.pos > posBefore);
+    check("no stale popup after task done", $("watsonPopup").hidden);
+    check("no js errors (run 6)", errors.length === 0, errors.slice(0, 3).join(" | "));
+  }
+
+  console.log("");
   if (failures.length) {
     console.log("RESULT: " + failures.length + " failure(s): " + failures.join("; "));
     process.exit(1);

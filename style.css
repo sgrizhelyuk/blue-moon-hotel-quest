@@ -391,6 +391,8 @@ html, body {
   padding: 20px;
 }
 
+#watsonPopup { z-index: 90; }
+
 .modal-card {
   background: linear-gradient(160deg, rgba(27, 42, 74, 0.97), rgba(19, 30, 54, 0.97));
   border: 2px solid var(--gold);

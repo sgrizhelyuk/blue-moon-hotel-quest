@@ -256,6 +256,8 @@
 
   function taskDone(msg) {
     els.taskPanel.hidden = true;
+    els.watsonPopup.hidden = true;
+    watsonOnClose = null;
     toast(msg || "Correct! Well done.", "good");
     advance();
   }
@@ -287,7 +289,9 @@
           }
           answered++;
           if (answered === task.stmts.length) {
-            setTimeout(function () { taskDone(); }, 400);
+            var finish = function () { setTimeout(function () { taskDone(); }, 400); };
+            if (!els.watsonPopup.hidden) { watsonOnClose = finish; }
+            else { finish(); }
           }
         };
         wrap.appendChild(b);
@@ -576,8 +580,11 @@
 
   /* ---------------- Watson ---------------- */
 
+  var watsonOnClose = null;
+
   function openWatson(text) {
     els.watsonText.textContent = text;
+    els.watsonPopup.style.zIndex = "90";
     els.watsonPopup.hidden = false;
   }
 
@@ -672,7 +679,14 @@
     els.btnWatsonTop.onclick = function () {
       openWatson(state.hint || "Read the dialogue and choose the best answer.");
     };
-    els.watsonClose.onclick = function () { els.watsonPopup.hidden = true; };
+    els.watsonClose.onclick = function () {
+      els.watsonPopup.hidden = true;
+      if (watsonOnClose) {
+        var f = watsonOnClose;
+        watsonOnClose = null;
+        f();
+      }
+    };
     els.btnLang.onclick = toggleLang;
     els.btnRestart.onclick = function () { resetState(); clearSave(); startGame(); };
     els.btnEndTitle.onclick = function () { clearHotspots(); showScreen("title"); initTitle(); };
