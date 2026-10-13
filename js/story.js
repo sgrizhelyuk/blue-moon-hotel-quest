@@ -26,6 +26,7 @@ window.STORY = {
       objective: "Answer Inspector Jones and go to the Moonlit Evening Hotel.",
       objectiveRu: "Ответь инспектору Джонсу и отправляйся в отель.",
       bg: "assets/BG_prologue.png",
+      music: "noir",
       cast: {},
       items: [
         { t: "Rain hits the window of your office. The phone rings.", ru: "Дождь стучит в окно кабинета. Звонит телефон." },
@@ -70,6 +71,7 @@ window.STORY = {
       objective: "Talk to the driver. Ask about the strange night.",
       objectiveRu: "Поговори с водителем. Расспроси о странной ночи.",
       bg: "assets/BG_taxi.png",
+      music: "lounge",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" } },
       items: [
         { t: "A classic black cab. Rain on the windows. The city lights float by.", ru: "Классическое чёрное такси. Дождь по стёклам. Городские огни плывут мимо." },
@@ -135,6 +137,7 @@ window.STORY = {
       objective: "Introduce yourself politely at the reception desk.",
       objectiveRu: "Вежливо представься на ресепшене.",
       bg: "assets/BG_reception.png",
+      music: "lounge",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Emma: { img: "assets/CH_emma.png", side: "right" } },
       items: [
         { t: "The hotel lobby smells of wood, tea and rain.", ru: "В холле отеля пахнет деревом, чаем и дождём." },
@@ -176,6 +179,7 @@ window.STORY = {
       objective: "Ask about the time and place of the theft.",
       objectiveRu: "Расспроси о времени и месте кражи.",
       bg: "assets/BG_office.png",
+      music: "piano",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Grant: { img: "assets/CH_grant.png", side: "right" } },
       items: [
         { t: "A warm fireplace. And one empty spot on the wall.", ru: "Тёплый камин. И одно пустое место на стене." },
@@ -227,6 +231,7 @@ window.STORY = {
       objective: "Find the clues in the lobby with your magnifying glass.",
       objectiveRu: "Найди улики в холле с помощью лупы.",
       bg: "assets/BG_lobby_crime.png",
+      music: "noir",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Emma: { img: "assets/CH_emma.png", side: "right" } },
       items: [
         { sp: "Emma", t: "This is the lobby. The painting was here, on this wall.", ru: "Это холл. Картина была здесь, на этой стене." },
@@ -289,6 +294,7 @@ window.STORY = {
       objective: "Order your dinner and check the chef's alibi.",
       objectiveRu: "Закажи ужин и проверь алиби шеф-повара.",
       bg: "assets/BG_restaurant.png",
+      music: "lounge2",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Antonio: { img: "assets/CH_antonio.png", side: "right" } },
       items: [
         { t: "Candles, white tablecloths, rain on the tall windows. The restaurant is almost empty.", ru: "Свечи, белые скатерти, дождь в высоких окнах. Ресторан почти пуст." },
@@ -361,6 +367,7 @@ window.STORY = {
       objective: "Ask Mrs. Wilkinson about last night. Watch her coat.",
       objectiveRu: "Расспроси миссис Уилкинсон. Смотри на её пальто.",
       bg: "assets/BG_corridor.png",
+      music: "mystery",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Wilkinson: { img: "assets/CH_wilkinson.png", side: "right" } },
       items: [
         { t: "Room 312. Red carpet, golden lamps, deep shadows.", ru: "Номер 312. Красный ковёр, золотые лампы, глубокие тени." },
@@ -426,6 +433,7 @@ window.STORY = {
       objective: "Make Tim feel safe. Find the hat box.",
       objectiveRu: "Успокой Тима. Найди шляпную коробку.",
       bg: "assets/BG_corridor.png",
+      music: "mystery",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Tim: { img: "assets/CH_tim.png", side: "right" } },
       items: [
         { t: "The young bellboy almost drops a suitcase when he sees you.", ru: "Юный посыльный чуть не роняет чемодан, увидев тебя." },
@@ -498,6 +506,7 @@ window.STORY = {
       objective: "Name the thief and prove it with three clues.",
       objectiveRu: "Назови вора и докажи это тремя уликами.",
       bg: "assets/BG_lobby_crime.png",
+      music: "noir",
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Wilkinson: { img: "assets/CH_wilkinson.png", side: "right" } },
       items: [
         { t: "Everyone is in the lobby. The storm is over. It is time for the truth.", ru: "Все собрались в холле. Гроза закончилась. Пришло время правды." },
@@ -565,6 +574,7 @@ window.STORY = {
       objective: "Enjoy the morning. You solved the case!",
       objectiveRu: "Наслаждайся утром. Дело раскрыто!",
       bg: "assets/BG_epilogue.png",
+      music: "lounge2",
       cast: { Watson: { img: "assets/CH_watson_owl.png", side: "center" } },
       items: [
         { t: "Morning. Sunlight. Tea and the smell of chocolate cake.", ru: "Утро. Солнечный свет. Чай и запах шоколадного торта." },

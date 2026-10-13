@@ -80,7 +80,12 @@ async function solveTask(task, doc) {
     wide[task.a].click();
   } else if (task.kind === "multi") {
     const wide = [...body.querySelectorAll(".mini-btn.wide")];
-    task.a.forEach((i) => wide[i].click());
+    const optBtns = wide.filter((b) => b.dataset.idx !== undefined);
+    task.a.forEach((i) => {
+      const b = optBtns.find((x) => x.dataset.idx === String(i));
+      if (!b) throw new Error("multi option not found: idx " + i);
+      b.click();
+    });
     wide[wide.length - 1].click();
   } else if (task.kind === "order") {
     let seq;
@@ -116,6 +121,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
   let taskCyrillic = 0;
   let choiceCount = 0;
   let correctFirstCount = 0;
+  let nextLeak = 0;
+  let musicMismatch = 0;
   let steps = 0;
 
   while (steps++ < 6000) {
@@ -129,6 +136,7 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     const sc = BMH.scenes[st.scene];
     if (!sc) throw new Error("bad scene index " + st.scene);
     visited.add(sc.id);
+    if (BMH.music && sc.music && !$("gameScreen").hidden && BMH.music.current() !== sc.music) musicMismatch++;
     const item = sc.items[st.pos];
 
     if (!$("taskPanel").hidden) {
@@ -167,6 +175,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     const choiceBtns = [...$("choices").children];
     if (choiceBtns.length && item && item.opts) {
       choiceCount++;
+      await waitFor(() => $("lineText").textContent === (item.prompt.t || ""), 5000, "choice prompt typed");
+      if (!$("btnNext").hidden) nextLeak++;
       const correctOpt = item.opts.find((o) => o.ok);
       if (!correctOpt) throw new Error("choice without correct option in " + sc.id);
       const correctBtn = choiceBtns.find((b) => b.querySelector(".choice-en").textContent === correctOpt.t);
@@ -192,7 +202,7 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     await sleep(20);
   }
 
-  return { window, doc, errors, BMH, visited, $, click, steps, vocabSeen, taskCyrillic, choiceCount, correctFirstCount };
+  return { window, doc, errors, BMH, visited, $, click, steps, vocabSeen, taskCyrillic, choiceCount, correctFirstCount, nextLeak, musicMismatch };
 }
 
 (async () => {
@@ -212,6 +222,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
   check("mini-dictionaries seen and bilingual", run1.vocabSeen === 9, "vocab panels: " + run1.vocabSeen);
   check("choices shuffled (not always correct-first)", run1.choiceCount >= 9 && run1.correctFirstCount < run1.choiceCount,
     "choices=" + run1.choiceCount + " correctFirst=" + run1.correctFirstCount);
+  check("Next hidden while choices active (no skip)", run1.nextLeak === 0, "leaks: " + run1.nextLeak);
+  check("per-chapter music follows scene", run1.musicMismatch === 0, "mismatches: " + run1.musicMismatch);
 
   console.log("");
   console.log("=== Test 2: wrong choice + wrong task + badges ===");

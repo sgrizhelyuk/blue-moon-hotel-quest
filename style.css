@@ -147,6 +147,7 @@ html, body {
 .icon-btn:hover { transform: scale(1.08); }
 
 .icon-btn.on { box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.55); }
+.icon-btn.off { opacity: 0.35; }
 
 .img-btn img {
   width: 100%;

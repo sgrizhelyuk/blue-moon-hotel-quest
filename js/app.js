@@ -19,7 +19,7 @@
     choices: $("choices"),
     topbar: $("topbar"),
     btnHome: $("btnHome"), btnNotebook: $("btnNotebook"),
-    btnWatsonTop: $("btnWatsonTop"), btnLang: $("btnLang"),
+    btnWatsonTop: $("btnWatsonTop"), btnLang: $("btnLang"), btnMusic: $("btnMusic"),
     watsonPopup: $("watsonPopup"), watsonText: $("watsonText"), watsonClose: $("watsonClose"),
     notebook: $("notebookPanel"), notebookBody: $("notebookBody"), notebookClose: $("notebookClose"),
     taskPanel: $("taskPanel"), taskTitle: $("taskTitle"), taskBody: $("taskBody"), taskHint: $("taskHint"),
@@ -120,6 +120,7 @@
       setSprite(name, c);
     });
     chapterCard(sc.chapter + " — " + sc.title);
+    playMusic(sc.music, 1400);
     els.taskPanel.hidden = true;
     els.choices.innerHTML = "";
     renderItem();
@@ -150,6 +151,89 @@
     var scale = Math.max(vw / iw, vh / ih);
     var overflow = Math.max(0, ih * scale - vh) / 2;
     document.documentElement.style.setProperty("--bg-overflow", overflow.toFixed(1) + "px");
+  }
+
+  /* ---------------- music ---------------- */
+
+  var MUSIC = {
+    lounge: "assets/music/airport_lounge.mp3",
+    lounge2: "assets/music/backbay_lounge.mp3",
+    noir: "assets/music/night_on_the_docks_piano.mp3",
+    mystery: "assets/music/comfortable_mystery.mp3",
+    piano: "assets/music/evening_fall_piano.mp3"
+  };
+  var MUSIC_KEY = "bmh_music_v1";
+  var MUSIC_VOL = 0.42;
+  var musicEls = null;
+  var musicIdx = 0;
+  var musicSrc = null;
+  var musicKey = null;
+
+  function musicEnabled() {
+    try { return localStorage.getItem(MUSIC_KEY) !== "off"; } catch (e) { return true; }
+  }
+
+  function ensureAudio() {
+    if (musicEls) { return; }
+    musicEls = [document.createElement("audio"), document.createElement("audio")];
+    musicEls[0].preload = "auto";
+    musicEls[1].preload = "auto";
+  }
+
+  function fadeTo(el, target, ms, done) {
+    if (el._fadeTimer) { clearInterval(el._fadeTimer); el._fadeTimer = null; }
+    var start = el.volume;
+    var t0 = Date.now();
+    el._fadeTimer = setInterval(function () {
+      var k = Math.min(1, (Date.now() - t0) / ms);
+      el.volume = Math.max(0, Math.min(1, start + (target - start) * k));
+      if (k >= 1) {
+        clearInterval(el._fadeTimer);
+        el._fadeTimer = null;
+        if (done) { done(); }
+      }
+    }, 50);
+  }
+
+  function playMusic(key, fadeMs) {
+    musicKey = key || null;
+    var src = MUSIC[key];
+    if (!src || !musicEnabled()) { return; }
+    ensureAudio();
+    if (musicSrc === src && !musicEls[musicIdx].paused) { return; }
+    var cur = musicEls[musicIdx];
+    var nxt = musicEls[1 - musicIdx];
+    musicIdx = 1 - musicIdx;
+    musicSrc = src;
+    nxt.src = src;
+    nxt.loop = true;
+    nxt.volume = 0;
+    try {
+      var p = nxt.play();
+      if (p && p.catch) { p.catch(function () {}); }
+    } catch (e) {}
+    fadeTo(nxt, MUSIC_VOL, fadeMs || 1200);
+    fadeTo(cur, 0, fadeMs || 1200, function () { cur.pause(); });
+  }
+
+  function stopMusic(fadeMs) {
+    musicKey = null;
+    musicSrc = null;
+    if (!musicEls) { return; }
+    musicEls.forEach(function (el) {
+      fadeTo(el, 0, fadeMs || 700, function () { el.pause(); });
+    });
+  }
+
+  function setMusicEnabled(on) {
+    try { localStorage.setItem(MUSIC_KEY, on ? "on" : "off"); } catch (e) {}
+    if (els.btnMusic) { els.btnMusic.classList.toggle("off", !on); }
+    if (on) {
+      musicSrc = null;
+      if (musicKey) { playMusic(musicKey, 600); }
+    } else {
+      stopMusic(400);
+    }
   }
 
   function renderItem() {
@@ -205,7 +289,7 @@
         clearInterval(state.typeTimer);
         state.typeTimer = null;
         state.typing = false;
-        els.btnNext.hidden = false;
+        els.btnNext.hidden = els.choices.children.length > 0;
       }
     }, 18);
   }
@@ -345,9 +429,16 @@
 
   function renderMulti(task) {
     var picked = [];
-    task.opts.forEach(function (opt, i) {
+    var order = task.opts.map(function (_, i) { return i; });
+    for (var i = order.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
+    }
+    order.forEach(function (i) {
+      var opt = task.opts[i];
       var b = document.createElement("button");
       b.className = "mini-btn wide";
+      b.dataset.idx = String(i);
       b.textContent = opt;
       b.onclick = function () {
         if (b.classList.contains("picked")) {
@@ -656,6 +747,7 @@
       { img: "assets/UI_logo_emblem.png", name: "Grammar Master", ru: "Грамматика без ошибок", got: state.wrongTasks === 0 }
     ];
     els.endBadges.innerHTML = "";
+    playMusic("lounge2", 1600);
     badges.forEach(function (b) {
       var d = document.createElement("div");
       d.className = "badge " + (b.got ? "got" : "missed");
@@ -675,11 +767,12 @@
 
   function wire() {
     els.btnNext.onclick = function () {
+      if (!state.typing && els.choices.children.length > 0) { return; }
       if (state.typing) {
         if (state.typeTimer) { clearInterval(state.typeTimer); state.typeTimer = null; }
         state.typing = false;
         els.lineText.textContent = (state.dialogCtx && state.dialogCtx.t) || "";
-        els.btnNext.hidden = false;
+        els.btnNext.hidden = els.choices.children.length > 0;
         return;
       }
       els.btnNext.hidden = true;
@@ -687,6 +780,7 @@
     };
     els.btnHome.onclick = function () {
       save();
+      stopMusic(600);
       if (state.typeTimer) { clearInterval(state.typeTimer); state.typeTimer = null; }
       els.taskPanel.hidden = true;
       els.notebook.hidden = true;
@@ -709,6 +803,7 @@
       }
     };
     els.btnLang.onclick = toggleLang;
+    if (els.btnMusic) { els.btnMusic.onclick = function () { setMusicEnabled(!musicEnabled()); }; }
     els.btnRestart.onclick = function () { resetState(); clearSave(); startGame(); };
     els.btnEndTitle.onclick = function () { clearHotspots(); showScreen("title"); initTitle(); };
   }
@@ -717,11 +812,15 @@
     wire();
     initTitle();
     showScreen("title");
+    if (els.btnMusic) { els.btnMusic.classList.toggle("off", !musicEnabled()); }
     fitBgOverflow();
     window.addEventListener("resize", fitBgOverflow);
     els.bg.addEventListener("load", fitBgOverflow);
   });
 
   /* test/debug handle */
-  window.__BMH__ = { state: state, scenes: SCENES, clues: CLUES };
+  window.__BMH__ = {
+    state: state, scenes: SCENES, clues: CLUES,
+    music: { current: function () { return musicKey; }, enabled: musicEnabled }
+  };
 })();
