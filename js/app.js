@@ -136,10 +136,21 @@
     img.className = "sprite sprite-" + (c.side || "right");
     img.src = c.img;
     img.alt = name;
+    img.dataset.id = c.img.split("/").pop().replace(".png", "");
     els.sprites.appendChild(img);
   }
 
   function clearSprites() { els.sprites.innerHTML = ""; }
+
+  function fitBgOverflow() {
+    var iw = els.bg.naturalWidth || 1920;
+    var ih = els.bg.naturalHeight || 1080;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var scale = Math.max(vw / iw, vh / ih);
+    var overflow = Math.max(0, ih * scale - vh) / 2;
+    document.documentElement.style.setProperty("--bg-overflow", overflow.toFixed(1) + "px");
+  }
 
   function renderItem() {
     var sc = SCENES[state.scene];
@@ -706,6 +717,9 @@
     wire();
     initTitle();
     showScreen("title");
+    fitBgOverflow();
+    window.addEventListener("resize", fitBgOverflow);
+    els.bg.addEventListener("load", fitBgOverflow);
   });
 
   /* test/debug handle */

@@ -221,14 +221,21 @@ html, body {
 
 .sprite {
   position: absolute;
-  bottom: 0;
-  height: 74vh;
+  bottom: calc(-1 * (var(--bg-overflow, 0px) + 0.6vh));
+  height: var(--sprite-h, 74vh);
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
 }
 
 .sprite-left { left: 2vw; }
 .sprite-right { right: 2vw; }
 .sprite-center { left: 50%; transform: translateX(-50%); height: 46vh; bottom: 4vh; }
+
+.sprite[data-id="CH_alex"] { --sprite-h: 71vh; }
+.sprite[data-id="CH_emma"] { --sprite-h: 68vh; }
+.sprite[data-id="CH_tim"] { --sprite-h: 75vh; }
+.sprite[data-id="CH_grant"] { --sprite-h: 66vh; }
+.sprite[data-id="CH_wilkinson"] { --sprite-h: 76vh; }
+.sprite[data-id="CH_antonio"] { --sprite-h: 73vh; }
 
 /* ---------------- dialogue ---------------- */
 
@@ -618,7 +625,7 @@ html, body {
 /* ---------------- small screens ---------------- */
 
 @media (max-width: 720px) {
-  .sprite { height: 58vh; }
+  .sprite { height: calc(var(--sprite-h, 74vh) * 0.78); }
   #dialogue { min-height: 150px; padding: 26px 30px 24px; }
   #nameplate { left: 16px; padding: 6px 30px; }
   #choices { bottom: 190px; width: 92vw; }
