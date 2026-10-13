@@ -244,7 +244,8 @@
   function startTask(task) {
     els.taskPanel.hidden = false;
     els.taskTitle.textContent = task.title || "Task";
-    els.taskHint.textContent = task.ru || "";
+    els.taskHint.textContent = "";
+    els.taskHint.hidden = true;
     els.taskBody.innerHTML = "";
 
     if (task.kind === "tf") renderTF(task);
@@ -266,12 +267,6 @@
       row.className = "tf-row";
       var p = document.createElement("p");
       p.textContent = st.t;
-      if (st.ru) {
-        var r = document.createElement("span");
-        r.className = "ru";
-        r.textContent = st.ru;
-        p.appendChild(r);
-      }
       row.appendChild(p);
       var wrap = document.createElement("div");
       wrap.className = "tf-btns";
@@ -306,12 +301,6 @@
     var q = document.createElement("p");
     q.className = "task-q";
     q.textContent = task.q;
-    if (task.ru) {
-      var r = document.createElement("span");
-      r.className = "ru";
-      r.textContent = task.ru;
-      q.appendChild(r);
-    }
     els.taskBody.appendChild(q);
     task.opts.forEach(function (opt, i) {
       var b = document.createElement("button");
@@ -441,6 +430,7 @@
     els.taskPanel.hidden = false;
     els.taskTitle.textContent = "Mini-dictionary";
     els.taskHint.textContent = "New words from this scene";
+    els.taskHint.hidden = false;
     els.taskBody.innerHTML = "";
     var list = document.createElement("div");
     list.className = "vocab-list";

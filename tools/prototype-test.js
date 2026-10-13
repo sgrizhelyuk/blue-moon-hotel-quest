@@ -112,6 +112,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
   const visited = new Set();
   let wrongChoiceDone = false;
   let wrongTaskDone = false;
+  let vocabSeen = 0;
+  let taskCyrillic = 0;
   let steps = 0;
 
   while (steps++ < 6000) {
@@ -128,6 +130,11 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     const item = sc.items[st.pos];
 
     if (!$("taskPanel").hidden) {
+      const panelTitle = $("taskTitle").textContent;
+      const isVocab = panelTitle === "Mini-dictionary";
+      const hasCyr = /[\u0400-\u04FF]/.test($("taskPanel").textContent);
+      if (isVocab) { vocabSeen++; }
+      else if (hasCyr) { taskCyrillic++; }
       if (item && item.task) {
         if (wrongFirstTask && !wrongTaskDone && item.task.kind === "quiz") {
           const wide = [...doc.getElementById("taskBody").querySelectorAll(".mini-btn.wide")];
@@ -176,7 +183,7 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     await sleep(20);
   }
 
-  return { window, doc, errors, BMH, visited, $, click, steps };
+  return { window, doc, errors, BMH, visited, $, click, steps, vocabSeen, taskCyrillic };
 }
 
 (async () => {
@@ -192,6 +199,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     "got=" + gotBadges.length + " missed=" + missedBadges.length);
   check("perfect run has no wrong choices/tasks", run1.BMH.state.wrongChoices === 0 && run1.BMH.state.wrongTasks === 0,
     "wc=" + run1.BMH.state.wrongChoices + " wt=" + run1.BMH.state.wrongTasks);
+  check("no Russian in tasks", run1.taskCyrillic === 0, "task panels with cyrillic: " + run1.taskCyrillic);
+  check("mini-dictionaries seen and bilingual", run1.vocabSeen === 9, "vocab panels: " + run1.vocabSeen);
 
   console.log("");
   console.log("=== Test 2: wrong choice + wrong task + badges ===");

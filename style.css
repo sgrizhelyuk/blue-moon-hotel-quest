@@ -428,8 +428,6 @@ html, body {
 
 .task-q { font-size: 19px; color: var(--cream); }
 
-.task-q .ru, .tf-row .ru { display: block; color: #c8bda6; font-size: 14px; font-style: italic; margin-top: 4px; }
-
 .tf-row {
   display: flex;
   align-items: center;
