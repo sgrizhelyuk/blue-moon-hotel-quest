@@ -48,6 +48,7 @@
 - Прозрачность: 23 элемента (7 персонажей, 7 объектов-улик без OBJ_painting, 9 UI без title/case_map/notebook). Базово — rembg u2net; сложные случаи — isnet-general-use / isnet-anime (CH_watson_owl), хрома-ключ по доминирующему цвету (OBJ_broken_glass), хрома по углам (UI_name_plate), порог яркости (CH_wilkinson, CH_antonio, UI_owl_hint), круглая маска (UI_logo_emblem). Кропы: UI_badge_case_closed, UI_name_plate, UI_dialogue_frame, OBJ_red_coat.
 - Апскейл: 14 фонов 1344×768 → 1920×1080 (ComfyUI: RealESRGAN_x4plus + Lanczos 1920×1080).
 - Бэкапы: `assets/_versions/pre_rembg/`, `assets/_versions/pre_upscale/`.
+- Спрайты персонажей дообрезаны по видимому содержимому: удалена малозаметная «пыль» (альфа < 16), из-за которой у CH_emma, CH_grant и CH_watson_owl были большие пустые поля — персонажи больше не «висят» над нижним краем экрана.
 - Остаточные дефекты (принято, незначительно): CH_wilkinson — лёгкие серые штрихи и жёлтое пятно от окна; CH_watson_owl — небольшая «платформа» под когтями; OBJ_broken_glass — микро-крапинки на кромках; UI_logo_emblem — следы золота по ободу.
 
 ## Технические детали
