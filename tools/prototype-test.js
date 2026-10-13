@@ -1,4 +1,4 @@
-/* Headless playthrough test for The Blue Moon Hotel Mystery prototype.
+/* Headless playthrough test for The Moonlit Evening Mystery prototype.
  * Requires jsdom (installed outside the repo, see NODE_PATH).
  * Run:  node tools/prototype-test.js
  */
@@ -114,6 +114,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
   let wrongTaskDone = false;
   let vocabSeen = 0;
   let taskCyrillic = 0;
+  let choiceCount = 0;
+  let correctFirstCount = 0;
   let steps = 0;
 
   while (steps++ < 6000) {
@@ -164,16 +166,23 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
 
     const choiceBtns = [...$("choices").children];
     if (choiceBtns.length && item && item.opts) {
+      choiceCount++;
+      const correctOpt = item.opts.find((o) => o.ok);
+      if (!correctOpt) throw new Error("choice without correct option in " + sc.id);
+      const correctBtn = choiceBtns.find((b) => b.querySelector(".choice-en").textContent === correctOpt.t);
+      if (!correctBtn) throw new Error("correct button not found in " + sc.id);
+      if (choiceBtns.indexOf(correctBtn) === 0) correctFirstCount++;
       if (wrongFirstChoice && !wrongChoiceDone) {
-        const wrongIdx = item.opts.findIndex((o) => !o.ok);
-        choiceBtns[wrongIdx].click();
-        await sleep(30);
-        if (!$("watsonPopup").hidden) { click($("watsonClose"), "watson close"); wrongChoiceDone = true; }
-        await waitFor(() => $("watsonPopup").hidden, 2000, "watson closed");
+        const wrongOpt = item.opts.find((o) => !o.ok);
+        const wrongBtn = choiceBtns.find((b) => b.querySelector(".choice-en").textContent === wrongOpt.t);
+        if (wrongBtn) {
+          wrongBtn.click();
+          await sleep(30);
+          if (!$("watsonPopup").hidden) { click($("watsonClose"), "watson close"); wrongChoiceDone = true; }
+          await waitFor(() => $("watsonPopup").hidden, 2000, "watson closed");
+        }
       }
-      const idx = item.opts.findIndex((o) => o.ok);
-      if (idx === -1) throw new Error("choice without correct option in " + sc.id);
-      choiceBtns[idx].click();
+      correctBtn.click();
       await sleep(30);
       continue;
     }
@@ -183,7 +192,7 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     await sleep(20);
   }
 
-  return { window, doc, errors, BMH, visited, $, click, steps, vocabSeen, taskCyrillic };
+  return { window, doc, errors, BMH, visited, $, click, steps, vocabSeen, taskCyrillic, choiceCount, correctFirstCount };
 }
 
 (async () => {
@@ -201,6 +210,8 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
     "wc=" + run1.BMH.state.wrongChoices + " wt=" + run1.BMH.state.wrongTasks);
   check("no Russian in tasks", run1.taskCyrillic === 0, "task panels with cyrillic: " + run1.taskCyrillic);
   check("mini-dictionaries seen and bilingual", run1.vocabSeen === 9, "vocab panels: " + run1.vocabSeen);
+  check("choices shuffled (not always correct-first)", run1.choiceCount >= 9 && run1.correctFirstCount < run1.choiceCount,
+    "choices=" + run1.choiceCount + " correctFirst=" + run1.correctFirstCount);
 
   console.log("");
   console.log("=== Test 2: wrong choice + wrong task + badges ===");
@@ -300,7 +311,9 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
       const st = BMH.state;
       const item = BMH.scenes[st.scene].items[st.pos];
       if (choiceBtns.length && item && item.opts) {
-        choiceBtns[item.opts.findIndex((o) => o.ok)].click();
+        const cOpt = item.opts.find((o) => o.ok);
+        const cBtn = choiceBtns.find((b) => b.querySelector(".choice-en").textContent === cOpt.t);
+        cBtn.click();
         await sleep(30);
         continue;
       }
@@ -331,7 +344,9 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
       const item = BMH.scenes[st.scene].items[st.pos];
       const choiceBtns = [...$("choices").children];
       if (choiceBtns.length && item && item.opts) {
-        choiceBtns[item.opts.findIndex((o) => o.ok)].click();
+        const cOpt = item.opts.find((o) => o.ok);
+        const cBtn = choiceBtns.find((b) => b.querySelector(".choice-en").textContent === cOpt.t);
+        cBtn.click();
         await sleep(30);
         continue;
       }

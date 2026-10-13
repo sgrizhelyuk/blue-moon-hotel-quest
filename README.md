@@ -1,4 +1,4 @@
-# The Blue Moon Hotel Mystery / «Тайна отеля „Голубая луна“»
+# The Moonlit Evening Mystery / «Тайна отеля „Лунный вечер“»
 
 Английский детективный квест (visual novel + поиск улик) уровня Pre-Intermediate (A2–B1).
 Цель: естественная практика Past Simple / Past Continuous, предлогов, вежливых просьб — через диалоги, выборы реплик и сбор улик.

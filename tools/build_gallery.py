@@ -59,8 +59,8 @@ def main():
 
     parts = [
         "<!DOCTYPE html><html lang='ru'><head><meta charset='utf-8'>",
-        "<title>Ассеты: Голубая луна</title><style>%s</style></head><body>" % CSS,
-        "<h1>Тайна отеля «Голубая луна» — галерея ассетов</h1>",
+        "<title>Ассеты: Лунный вечер</title><style>%s</style></head><body>" % CSS,
+        "<h1>Тайна отеля «Лунный вечер» — галерея ассетов</h1>",
         "<p class='legend'>Принято: %d из %d. Пунктирная рамка — рисуем кодом (SVG).</p>"
         % (accepted, len(items)),
     ]

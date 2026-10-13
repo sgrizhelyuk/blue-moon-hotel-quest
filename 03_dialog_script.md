@@ -1,4 +1,4 @@
-# The Blue Moon Hotel Mystery — полный диалоговый скрипт
+# The Moonlit Evening Mystery — полный диалоговый скрипт
 
 Версия 1.0 (13.10.2026). Уровень: Pre-Intermediate (A2–B1). ~164 реплики.
 Написан на основе `01_scenario.md` с рекомендованными решениями: мягкий финал, воровка — миссис Уилкинсон, без «проигрыша», режим EN + кнопка перевода.
@@ -20,7 +20,7 @@
 
 1. Alex: Hello? 
 2. Jones (строго): Alex? It's Inspector Jones. 
-3. Jones: The Blue Moon Hotel called us. Someone stole a painting. 
+3. Jones: The Moonlit Evening Hotel called us. Someone stole a painting. 
 4. Alex (удивлён): Stole? A painting, sir? 
 5. Jones: The "Moon over the Thames". It is the owner's family treasure. 
 6. Alex: When did it happen? 
@@ -30,7 +30,7 @@
 10. Alex: Yes, sir. I'm on my way. 
 11. Jones: Wait. Be careful tonight. The storm is very bad. 
 12. Alex: I understand, sir. Thank you. 
--- Титры: The Blue Moon Hotel Mystery --
+-- Титры: The Moonlit Evening Mystery --
 
 **Выбор в прологе** (Alex, что ответить Джонсу после «Take a taxi»):
 > ✓ Yes, sir, I'm on my way.
@@ -54,7 +54,7 @@
 Цель: small talk, Past Simple.
 
 1. Dave (весело): Evening! Where to? 
-2. Alex: To the Blue Moon Hotel, please. 
+2. Alex: To the Moonlit Evening Hotel, please. 
 3. Dave: First time in London? 
 -- [Выбор 1]
 > ✓ Yes, it's my first time.
@@ -80,7 +80,7 @@
 13. Alex: What time was that? 
 14. Dave: About ten. And rain, rain, rain. 
 15. Alex: Thank you, Dave. That's important. 
-16. Dave: Here we are. The Blue Moon. That's £12, please. 
+16. Dave: Here we are. The Moonlit Evening. That's £12, please. 
 17. Alex: Here you are. 
 18. Dave: Thank you. Have a good evening! 
 19. Alex: You too. And thank you for the story. 
@@ -103,7 +103,7 @@
 Ассеты: `BG_reception`, `CH_emma`.
 Цель: приветствие, вежливое представление.
 
-1. Emma (приветливо): Good evening! Welcome to the Blue Moon Hotel. 
+1. Emma (приветливо): Good evening! Welcome to the Moonlit Evening Hotel. 
 2. Emma: Do you have a reservation? 
 -- [Выбор 1]
 > ✓ Good evening. I'm Alex from Scotland Yard. Mr. Grant is expecting me.
@@ -407,11 +407,11 @@
 9. Tim: Thank you, Alex. For everything. 
 10. Alex: Good luck, Tim. You are brave. Work hard. 
 11. Grant: The "Moon over the Thames" is back home. 
-12. Grant: You are welcome at the Blue Moon any time, detective. 
+12. Grant: You are welcome at the Moonlit Evening any time, detective. 
 13. Alex: It was nice to meet you all. 
 14. Watson: Hoo-hoo! Case closed! You are a real detective now. 
 15. Watson: But tomorrow... a new mystery! See you next time! 
--- Титр: The Blue Moon Hotel — Case Closed. To be continued... --
+-- Титр: The Moonlit Evening Hotel — Case Closed. To be continued... --
 
 **Значки (выдаются по условиям):**
 - «Case Closed» («Дело закрыто») — завершена игра (всегда) → `UI_badge_case_closed`.

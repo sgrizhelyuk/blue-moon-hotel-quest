@@ -1,4 +1,4 @@
-/* The Blue Moon Hotel Mystery — prototype engine */
+/* The Moonlit Evening Mystery — prototype engine */
 (function () {
   "use strict";
 
@@ -219,9 +219,16 @@
     renderDialogue({ sp: item.prompt.sp, t: item.prompt.t, ru: item.prompt.ru, hint: item.prompt.hint });
     els.btnNext.hidden = true;
     els.choices.innerHTML = "";
-    item.opts.forEach(function (opt) {
+    var order = item.opts.map(function (_, i) { return i; });
+    for (var i = order.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
+    }
+    order.forEach(function (oi) {
+      var opt = item.opts[oi];
       var b = document.createElement("button");
       b.className = "choice-btn";
+      b.dataset.opt = String(oi);
       b.innerHTML = '<span class="choice-en"></span><span class="choice-ru"></span>';
       b.querySelector(".choice-en").textContent = opt.t;
       if (opt.ru && state.lang === "both") { b.querySelector(".choice-ru").textContent = opt.ru; }
@@ -616,10 +623,13 @@
     var sc = SCENES[state.scene];
     var cur = sc && sc.items[state.pos];
     if (cur && cur.opts) {
-      var btns = els.choices.querySelectorAll(".choice-ru");
-      cur.opts.forEach(function (opt, i) {
-        if (btns[i]) { btns[i].textContent = state.lang === "both" ? (opt.ru || "") : ""; }
-      });
+      var btns = els.choices.querySelectorAll(".choice-btn");
+      for (var i = 0; i < btns.length; i++) {
+        var oi = parseInt(btns[i].dataset.opt || "0", 10);
+        var span = btns[i].querySelector(".choice-ru");
+        var opt = cur.opts[oi];
+        if (span) { span.textContent = state.lang === "both" ? ((opt && opt.ru) || "") : ""; }
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-// The Blue Moon Hotel Mystery — story data (part 1: prologue..ch4)
+// The Moonlit Evening Mystery — story data (part 1: prologue..ch4)
 // companion files: js/story.js is split in two parts for maintainability.
 
 window.CLUES = {
@@ -23,7 +23,7 @@ window.STORY = {
       id: "prologue",
       chapter: "Prologue",
       title: "A Call from Scotland Yard",
-      objective: "Answer Inspector Jones and go to the Blue Moon Hotel.",
+      objective: "Answer Inspector Jones and go to the Moonlit Evening Hotel.",
       objectiveRu: "Ответь инспектору Джонсу и отправляйся в отель.",
       bg: "assets/BG_prologue.png",
       cast: {},
@@ -31,7 +31,7 @@ window.STORY = {
         { t: "Rain hits the window of your office. The phone rings.", ru: "Дождь стучит в окно кабинета. Звонит телефон." },
         { sp: "Alex", t: "Hello?", ru: "Алло?" },
         { sp: "Jones", t: "Alex? It's Inspector Jones.", ru: "Алекс? Это инспектор Джонс.", hint: "Jones is your boss. Listen carefully to his questions." },
-        { sp: "Jones", t: "The Blue Moon Hotel called us. Someone stole a painting.", ru: "Из отеля «Голубая луна» позвонили. Кто-то украл картину." },
+        { sp: "Jones", t: "The Moonlit Evening Hotel called us. Someone stole a painting.", ru: "Из отеля «Лунный вечер» позвонили. Кто-то украл картину." },
         { sp: "Alex", t: "Stole? A painting, sir?", ru: "Украл? Картину, сэр?" },
         { sp: "Jones", t: "The \"Moon over the Thames\". It is the owner's family treasure.", ru: "«Луна над Темзой». Это семейная реликвия владельца." },
         { sp: "Alex", t: "When did it happen?", ru: "Когда это случилось?", hint: "Past Simple question: When did + subject + verb?" },
@@ -42,8 +42,8 @@ window.STORY = {
           prompt: { sp: "Alex", t: "How do you answer your boss?", ru: "Как ты ответишь начальнику?" },
           opts: [
             { t: "Yes, sir. I'm on my way.", ru: "Да, сэр. Я уже в пути.", ok: true, fb: "Polite and professional. Well done!" },
-            { t: "Me go now.", ru: "Я идти сейчас.", fb: "Grammar: use Present Continuous for an action in progress: I'm on my way. 'Me go' is not English." },
-            { t: "Okay, bye.", ru: "Окей, пока.", fb: "Too casual for your boss. Say: Yes, sir. Thank you." }
+            { t: "I go now to the hotel, sir.", ru: "Я иду сейчас в отель, сэр.", fb: "Grammar: use Present Continuous for an action in progress: I'm on my way. 'I go now' is not English." },
+            { t: "Okay, I will be there soon, bye.", ru: "Окей, скоро буду, пока.", fb: "Too casual for your boss. Say: Yes, sir. Thank you." }
           ]
         },
         { sp: "Alex", t: "Yes, sir. I'm on my way.", ru: "Да, сэр. Я уже в пути." },
@@ -74,13 +74,13 @@ window.STORY = {
       items: [
         { t: "A classic black cab. Rain on the windows. The city lights float by.", ru: "Классическое чёрное такси. Дождь по стёклам. Городские огни плывут мимо." },
         { sp: "Dave", t: "Evening! Where to?", ru: "Добрый вечер! Куда едем?" },
-        { sp: "Alex", t: "To the Blue Moon Hotel, please.", ru: "В отель «Голубая луна», пожалуйста." },
+        { sp: "Alex", t: "To the Moonlit Evening Hotel, please.", ru: "В отель «Лунный вечер», пожалуйста." },
         {
           prompt: { sp: "Dave", t: "First time in London?", ru: "Первый раз в Лондоне?" },
           opts: [
             { t: "Yes, it's my first time.", ru: "Да, это мой первый раз.", ok: true },
-            { t: "Yes, I am first.", ru: "Да, я первый.", fb: "«Первый раз» — это It is my first time. The verb 'be' + adjective/noun phrase." },
-            { t: "No, I don't.", ru: "Нет, я не делаю.", fb: "The question 'First time...?' asks about a fact. Answer: Yes, it's my first time / No, I've been here before." }
+            { t: "Yes, my first time it is here in London.", ru: "Да, мой первый раз это здесь в Лондоне.", fb: "Word order matters: 'It is my first time here in London'. No extra 'my first time it is'." },
+            { t: "Yes, I am first time in this city.", ru: "Да, я первый раз в этом городе.", fb: "We say 'It is my first time' — not 'I am first time'." }
           ]
         },
         { sp: "Alex", t: "Yes, it's my first time.", ru: "Да, это мой первый раз." },
@@ -89,8 +89,8 @@ window.STORY = {
           prompt: { sp: "Alex", t: "You answer:", ru: "Ты отвечаешь:" },
           opts: [
             { t: "It was long but fine.", ru: "Долгий, но нормальный.", ok: true },
-            { t: "It is long.", ru: "Он долгий.", fb: "The flight is finished. Use Past Simple: It was long." },
-            { t: "It were long.", ru: "Он были долгий.", fb: "With 'it' we use 'was', not 'were'." }
+            { t: "It is long, but I like it very much.", ru: "Он долгий, но мне очень нравится.", fb: "The flight is finished. Use Past Simple: It was long." },
+            { t: "It were long and a little boring.", ru: "Он были долгий и немного скучный.", fb: "With 'it' we use 'was', not 'were'." }
           ]
         },
         { sp: "Alex", t: "It was long but fine.", ru: "Долгий, но нормальный." },
@@ -103,7 +103,7 @@ window.STORY = {
         { sp: "Alex", t: "What time was that?", ru: "В какое время это было?" },
         { sp: "Dave", t: "About ten. And rain, rain, rain.", ru: "Около десяти. И дождь, дождь, дождь." },
         { sp: "Alex", t: "Thank you, Dave. That's important.", ru: "Спасибо, Дэйв. Это важно." },
-        { sp: "Dave", t: "Here we are. The Blue Moon. That's £12, please.", ru: "Приехали. «Голубая луна». С вас 12 фунтов." },
+        { sp: "Dave", t: "Here we are. The Moonlit Evening. That's £12, please.", ru: "Приехали. «Лунный вечер». С вас 12 фунтов." },
         { sp: "Alex", t: "Here you are.", ru: "Вот, пожалуйста." },
         { sp: "Dave", t: "Thank you. Have a good evening!", ru: "Спасибо. Хорошего вечера!" },
         { sp: "Alex", t: "You too. And thank you for the story.", ru: "И вам. И спасибо за рассказ." },
@@ -138,14 +138,14 @@ window.STORY = {
       cast: { Alex: { img: "assets/CH_alex.png", side: "left" }, Emma: { img: "assets/CH_emma.png", side: "right" } },
       items: [
         { t: "The hotel lobby smells of wood, tea and rain.", ru: "В холле отеля пахнет деревом, чаем и дождём." },
-        { sp: "Emma", t: "Good evening! Welcome to the Blue Moon Hotel.", ru: "Добрый вечер! Добро пожаловать в отель «Голубая луна»." },
+        { sp: "Emma", t: "Good evening! Welcome to the Moonlit Evening Hotel.", ru: "Добрый вечер! Добро пожаловать в отель «Лунный вечер»." },
         { sp: "Emma", t: "Do you have a reservation?", ru: "У вас есть бронь?" },
         {
           prompt: { sp: "Alex", t: "You answer:", ru: "Ты отвечаешь:" },
           opts: [
             { t: "Good evening. I'm Alex from Scotland Yard. Mr. Grant is expecting me.", ru: "Добрый вечер. Я Алекс из Скотленд-Ярда. Мистер Грант меня ждёт.", ok: true, fb: "Clear and polite. Perfect." },
-            { t: "I am Alex. I want Mr. Grant.", ru: "Я Алекс. Хочу Гранта.", fb: "'I want' sounds demanding. Try: I'm here to see Mr. Grant / Mr. Grant is expecting me." },
-            { t: "Me detective. Call the boss.", ru: "Я детектив. Зови босса.", fb: "Full sentences, please: I am a detective. And 'boss' is too informal." }
+            { t: "Good evening. I am Alex, and I want to see Mr. Grant quickly, please.", ru: "Добрый вечер. Я Алекс, и я хочу увидеть мистера Гранта быстро, пожалуйста.", fb: "'I want ... quickly' sounds demanding. Try: Mr. Grant is expecting me." },
+            { t: "Hello. Me Alex from Scotland Yard. The boss Grant waits for me.", ru: "Привет. Я Алекс из Скотленд-Ярда. Босс Грант ждёт меня.", fb: "Full sentences: I am Alex... And not 'boss' — say 'Mr. Grant is expecting me'." }
           ]
         },
         { sp: "Emma", t: "Oh! The detective! Mr. Grant is in his office. Please, follow me.", ru: "О! Детектив! Мистер Грант в своём кабинете. Пожалуйста, за мной." },
@@ -297,8 +297,8 @@ window.STORY = {
           prompt: { sp: "Alex", t: "You order:", ru: "Ты делаешь заказ:" },
           opts: [
             { t: "Could I have the tomato soup and grilled chicken, please?", ru: "Можно мне томатный суп и курицу на гриле, пожалуйста?", ok: true, fb: "Polite request in a restaurant. Excellent!" },
-            { t: "I want soup. Quickly.", ru: "Хочу суп. Быстро.", fb: "In a restaurant use: Could I have..., please? 'I want' + 'Quickly' sounds rude." },
-            { t: "Give me food.", ru: "Дайте еду.", fb: "Too rude. Start your request with Could I have...? and add 'please'." }
+            { t: "I would like a soup with tomato and chicken, very fast please.", ru: "Я хотел бы суп с томатом и курицей, очень быстро, пожалуйста.", fb: "Almost polite, but 'very fast please' is not — and it is 'tomato soup'. Use: Could I have..., please?" },
+            { t: "Give me tomato soup and some chicken, I am in a hurry.", ru: "Дайте томатный суп и курицу, я спешу.", fb: "Too direct. Start with Could I have...? and add 'please'." }
           ]
         },
         { sp: "Alex", t: "Could I have the tomato soup and grilled chicken, please?", ru: "Можно мне томатный суп и курицу на гриле, пожалуйста?" },
@@ -308,7 +308,7 @@ window.STORY = {
           prompt: { sp: "Alex", t: "Ask about coffee:", ru: "Спроси про кофе:" },
           opts: [
             { t: "Do you have any coffee?", ru: "У вас есть кофе?", ok: true },
-            { t: "Do you have some coffee?", ru: "У вас есть кофе?", fb: "In questions we usually use 'any': Do you have any coffee? ('some' is for statements and offers)." }
+            { t: "Do you have some coffee for me?", ru: "У вас есть немного кофе для меня?", fb: "In questions we usually use 'any': Do you have any coffee? ('some' is for statements and offers)." }
           ]
         },
         { sp: "Alex", t: "Do you have any coffee?", ru: "У вас есть кофе?" },
@@ -368,9 +368,9 @@ window.STORY = {
         {
           prompt: { sp: "Alex", t: "You answer:", ru: "Ты отвечаешь:" },
           opts: [
-            { t: "Excuse me, could I ask you a few questions?", ru: "Простите, можно задать вам несколько вопросов?", ok: true, fb: "Polite and calm. Exactly right." },
-            { t: "You! Answer me!", ru: "Эй вы! Отвечайте мне!", fb: "Too rude. Start politely: Excuse me, could I ask you...?" },
-            { t: "Stop, woman!", ru: "Стойте, женщина!", fb: "We do not give orders to witnesses. Use Excuse me + could I...?" }
+            { t: "Excuse me, Mrs. Wilkinson. Could I ask you a few questions?", ru: "Простите, миссис Уилкинсон. Можно задать вам несколько вопросов?", ok: true, fb: "Polite and calm. Exactly right." },
+            { t: "Excuse me, madam, you must answer my questions right now.", ru: "Простите, мадам, вы должны ответить на мои вопросы прямо сейчас.", fb: "'You must answer' is an order. Ask politely: Could I ask you a few questions?" },
+            { t: "Hello. I need to ask you some questions, and it is very important.", ru: "Здравствуйте. Мне нужно задать вам вопросы, и это очень важно.", fb: "Less demanding, but still pushy. 'Could I ask you...?' is the polite formula." }
           ]
         },
         { sp: "Alex", t: "Excuse me, Mrs. Wilkinson. Could I ask you a few questions?", ru: "Простите, миссис Уилкинсон. Можно задать вам несколько вопросов?" },
@@ -436,8 +436,8 @@ window.STORY = {
           prompt: { sp: "Alex", t: "You answer:", ru: "Ты отвечаешь:" },
           opts: [
             { t: "Take your time. You're not in trouble. I'll help you.", ru: "Не спеши. Ты не в беде. Я тебе помогу.", ok: true, fb: "Kind and supportive. Tim will trust you." },
-            { t: "Tell me now or you're fired!", ru: "Говори сейчас, или тебя уволят!", fb: "Threats do not help. Try: Take your time. I'll help you." },
-            { t: "I don't care. Talk.", ru: "Мне всё равно. Говори.", fb: "Tim is scared. Show him he is safe: You're not in trouble." }
+            { t: "Come on, Tim, tell me everything now. It will be better for you.", ru: "Давай, Тим, рассказывай всё сейчас. Для тебя же лучше.", fb: "This sounds like pressure. Try: Take your time. I'll help you." },
+            { t: "Don't be afraid, but I need your story quickly. My job is important.", ru: "Не бойся, но мне нужен твой рассказ быстро. Моя работа важна.", fb: "Tim is scared. Put his feelings first: You're not in trouble. I'll help you." }
           ]
         },
         { sp: "Alex", t: "Take your time. You're not in trouble. I'll help you.", ru: "Не спеши. Ты не в беде. Я тебе помогу." },
@@ -578,7 +578,7 @@ window.STORY = {
         { sp: "Alex", t: "Smells wonderful, chef.", ru: "Пахнет чудесно, шеф." },
         { sp: "Tim", t: "Thank you, Alex. For everything.", ru: "Спасибо, Алекс. За всё." },
         { sp: "Alex", t: "Good luck, Tim. You are brave. Work hard.", ru: "Удачи, Тим. Ты храбрый. Работай усердно." },
-        { sp: "Grant", t: "The \"Moon over the Thames\" is back home. You are welcome at the Blue Moon any time.", ru: "«Луна над Темзой» снова дома. Добро пожаловать в «Голубую луну» в любое время." },
+        { sp: "Grant", t: "The \"Moon over the Thames\" is back home. You are welcome at the Moonlit Evening any time.", ru: "«Луна над Темзой» снова дома. Добро пожаловать в «Лунный вечер» в любое время." },
         { sp: "Alex", t: "It was nice to meet you all.", ru: "Было приятно со всеми познакомиться." },
         { sp: "Watson", t: "Hoo-hoo! Case closed! You are a real detective now.", ru: "Уху-ху! Дело закрыто! Теперь ты настоящий детектив." },
         { sp: "Watson", t: "But tomorrow... a new mystery! See you next time!", ru: "Но завтра... новая тайна! До встречи!" },
