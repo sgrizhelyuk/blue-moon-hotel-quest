@@ -99,12 +99,19 @@ html, body {
 .big-btn {
   font-family: inherit;
   font-size: clamp(16px, 1.6vw, 20px);
-  color: var(--ink);
-  background: url("assets/UI_choice_button.png") center / 100% 100% no-repeat;
-  border: none;
+  color: var(--cream);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+  background: linear-gradient(180deg, #33486e 0%, #1f3055 55%, #16233f 100%);
+  border: 2.5px solid var(--gold-soft);
+  border-radius: 999px;
+  box-shadow: 0 0 0 5px #efe2bd, 0 0 0 8px #caa040, 0 6px 16px rgba(0, 0, 0, 0.45);
   cursor: pointer;
-  padding: 14px 54px;
-  min-width: 240px;
+  min-width: 260px;
+  min-height: 70px;
+  padding: 10px 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.12s ease, filter 0.12s ease;
 }
 
@@ -113,9 +120,11 @@ html, body {
   background: rgba(27, 42, 74, 0.82);
   border: 2px solid var(--gold);
   border-radius: 12px;
+  box-shadow: none;
+  padding: 14px 40px;
 }
 
-.big-btn.small { padding: 8px 22px; min-width: 120px; font-size: 15px; }
+.big-btn.small { padding: 8px 26px; min-width: 120px; min-height: 46px; font-size: 15px; }
 
 .big-btn:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.06); }
 
@@ -302,22 +311,31 @@ html, body {
 
 .choice-btn {
   font-family: inherit;
-  font-size: clamp(15px, 1.55vw, 20px);
-  color: var(--ink);
-  background: url("assets/UI_choice_button.png") center / 100% 100% no-repeat;
-  border: none;
-  padding: 12px 40px;
+  font-size: clamp(15px, 1.55vw, 19px);
+  color: var(--cream);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+  background: linear-gradient(180deg, #33486e 0%, #1f3055 55%, #16233f 100%);
+  border: 2.5px solid var(--gold-soft);
+  border-radius: 999px;
+  box-shadow: 0 0 0 5px #efe2bd, 0 0 0 8px #caa040, 0 6px 16px rgba(0, 0, 0, 0.45);
   cursor: pointer;
-  text-align: center;
-  transition: transform 0.1s ease;
+  min-height: 60px;
+  padding: 9px 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: transform 0.1s ease, filter 0.1s ease;
 }
 
-.choice-btn:hover { transform: scale(1.02); }
+.choice-btn:hover { transform: scale(1.015); filter: brightness(1.1); }
 
 .choice-ru {
   display: block;
-  font-size: 0.82em;
-  color: #6d5c46;
+  font-size: 0.78em;
+  line-height: 1.2;
+  color: #cfc2a0;
   font-style: italic;
 }
 
