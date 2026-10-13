@@ -616,12 +616,16 @@
 
   /* ---------------- clue scenes ---------------- */
 
-  function clearHotspots() { els.hotspots.innerHTML = ""; }
+  function clearHotspots() {
+    els.hotspots.innerHTML = "";
+    els.hotspots.classList.remove("searching");
+  }
 
   function startClueMode(cfg) {
     els.dialogue.hidden = true;
     els.choices.innerHTML = "";
     els.hotspots.innerHTML = "";
+    els.hotspots.classList.add("searching");
     var found = 0;
     var total = cfg.hotspots.length;
 
@@ -633,6 +637,7 @@
       els.lineText.textContent = "You found everything. Time to continue.";
       els.btnNext.hidden = false;
       els.hotspots.innerHTML = "";
+      els.hotspots.classList.remove("searching");
     }
 
     function place(x, y, w, h, cls, handler) {

@@ -449,6 +449,30 @@ async function playthrough({ wrongFirstChoice = false, wrongFirstTask = false, s
   }
 
   console.log("");
+  console.log("=== Test 8: magnifier cursor in search mode ===");
+  {
+    const { window, doc } = await boot();
+    const { $, click } = mkHelpers(window, doc);
+    const BMH = window.__BMH__;
+    const ch4 = BMH.scenes[4];
+    const clueIdx = ch4.items.findIndex((i) => i.clues);
+    BMH.state.scene = 4;
+    BMH.state.pos = clueIdx;
+    BMH.state.clues = [];
+    click($("btnHome"), "home");
+    click($("btnContinue"), "continue");
+    await sleep(120);
+    check("search mode class on hotspots", $("hotspots").classList.contains("searching"));
+    const spots = [...doc.querySelectorAll("#hotspots .hotspot.clue")];
+    check("four lobby hotspots placed", spots.length === 4, "spots: " + spots.length);
+    for (const s of spots) { s.click(); await sleep(60); }
+    await sleep(1100);
+    check("clues collected via hotspots", BMH.state.clues.length === 4, "clues: " + BMH.state.clues.length);
+    check("search mode class removed after search", !$("hotspots").classList.contains("searching"));
+    check("dialogue visible after search", !$("dialogue").hidden && !$("btnNext").hidden);
+  }
+
+  console.log("");
   if (failures.length) {
     console.log("RESULT: " + failures.length + " failure(s): " + failures.join("; "));
     process.exit(1);

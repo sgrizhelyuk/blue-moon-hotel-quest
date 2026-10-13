@@ -352,7 +352,10 @@ html, body {
 #hotspots {
   position: absolute;
   inset: 0;
-  cursor: url("assets/UI_magnifier_cursor.png") 12 12, zoom-in;
+}
+
+#hotspots.searching {
+  cursor: url("assets/UI_magnifier_cursor32.png") 12 11, zoom-in;
 }
 
 .hotspot {
