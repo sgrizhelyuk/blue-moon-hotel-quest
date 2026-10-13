@@ -1,0 +1,317 @@
+{
+  "BG_taxi": {
+    "prompt": "interior point of view from the back seat of a classic London black cab at night: the driver seen from behind in a flat cap, rain on the windshield, blurred warm city lights outside, dark leather seats, cozy cab interior",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_taxi.png",
+    "prompt_id": "c5007ba1-1599-4d2e-bb52-ebb2441b1526",
+    "seed": 1002
+  },
+  "BG_hotel_exterior": {
+    "prompt": "art-deco hotel facade at night in the rain, glowing crescent-moon emblem above the entrance, wet street with warm reflections, lit windows, inviting",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_hotel_exterior.png",
+    "prompt_id": "5ceff973-58de-4927-b525-5b0a7d1f582c",
+    "seed": 1003
+  },
+  "BG_reception": {
+    "prompt": "hotel reception in a cozy art-deco lobby: long wooden reception counter with a golden brass service bell and a key rack with golden keys on the wall behind, warm lamps, potted plants, no computers, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_reception.png",
+    "prompt_id": "bb97c06c-7448-4f12-a201-7e80c96b1af5",
+    "seed": 9004
+  },
+  "BG_lobby_crime": {
+    "prompt": "art-deco hotel lobby at night: a large empty rectangle of darker blue wall where a painting used to hang, empty hooks visible, the rest of the blue walls have no other paintings, wooden parquet floor, chandelier, elegant furniture, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_lobby_crime.png",
+    "prompt_id": "618bca6b-642a-4262-8dcb-b4c4558cf8f5",
+    "seed": 9013
+  },
+  "CH_alex": {
+    "prompt": "waist-up portrait of a young detective, 25 years old, short dark hair, light beige trench coat over a sweater, blue scarf, small notebook in hand, friendly smart expression, centered, plain warm beige background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_alex.png",
+    "prompt_id": "bb3d150c-bd16-4fff-a84f-b9fbf4cc5e71",
+    "seed": 2001
+  },
+  "CH_wilkinson": {
+    "prompt": "waist-up portrait of an elegant aristocratic lady, 52 years old, silver hair in a neat updo, wearing a long bright red wool coat, pearl necklace, haughty severe cold expression, slight frown, looking slightly down at the viewer, centered, plain dark blue background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_wilkinson.png",
+    "prompt_id": "75be7935-9df3-4556-8b93-cd24766adc53",
+    "seed": 9010
+  },
+  "CH_watson_owl": {
+    "prompt": "cute cartoon owl detective mascot, fluffy brown and cream feathers, tiny deerstalker hat, big round friendly eyes, small magnifying glass under one wing, sitting pose, centered, plain warm beige background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_watson_owl.png",
+    "prompt_id": "169fc4b6-44e1-4b45-bd85-0d8719ca20d8",
+    "seed": 2009
+  },
+  "BG_frame_closeup": {
+    "prompt": "close-up of an empty antique golden picture frame hanging on a deep blue wall, the frame is completely empty, plain dark blue empty space inside the frame, a thin red thread caught on the frame corner, soft evening light, simple composition, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_frame_closeup.png",
+    "prompt_id": "d7804933-15db-40bd-bd74-c9899550b377",
+    "seed": 9012
+  },
+  "BG_prologue": {
+    "prompt": "evening office desk at Scotland Yard: an old rotary phone ringing, case files, desk lamp, rain on the window, moody blue tones, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_prologue.png",
+    "prompt_id": "8b9e1076-031f-4d6f-8fc2-df3ebc10ec62",
+    "seed": 1001
+  },
+  "BG_office": {
+    "prompt": "hotel owner's office: dark wooden desk with papers and an old ink pen, leather armchair, tall bookshelves with old books, a small fireplace with gentle fire, warm lamp light, old-fashioned cozy atmosphere, worried mood, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_office.png",
+    "prompt_id": "290b697f-f28d-4832-8c3b-181bafddb676",
+    "seed": 9101
+  },
+  "BG_restaurant": {
+    "prompt": "cozy hotel restaurant in the evening: small round tables with white cloth, candles, menu stands, big windows with rain, warm golden light, art-deco, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_restaurant.png",
+    "prompt_id": "a2b60542-d43b-47a7-a2ea-a9067f08ae0b",
+    "seed": 1007
+  },
+  "BG_kitchen": {
+    "prompt": "hotel kitchen: hanging copper pots and herbs, big wooden table with flour, a half-decorated chocolate cake, a red apron on a hook, warm light, light steam, cozy mess, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_kitchen.png",
+    "prompt_id": "95fd6e6e-26fc-4878-bc62-6c7af39dfe16",
+    "seed": 1008
+  },
+  "BG_corridor": {
+    "prompt": "hotel corridor with doors numbered 310 to 314, dark red carpet with golden pattern, wall sconce lamps, slightly dramatic shadows, art-deco, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_corridor.png",
+    "prompt_id": "32fea0d7-9308-4eb1-ad3a-77f3e32c01af",
+    "seed": 1009
+  },
+  "BG_luggage_room": {
+    "prompt": "hotel luggage room: old suitcases, stacked round hat boxes, wooden shelves, a dim hanging lamp, dust in the air, mysterious cozy mood, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_luggage_room.png",
+    "prompt_id": "d4a41080-03dd-4556-912b-53c27cee6429",
+    "seed": 1010
+  },
+  "BG_garden": {
+    "prompt": "back garden behind an old hotel at night after rain: the dark stone wall of the hotel with a wooden back door and a warm lamp above it, a wet stone path with puddles leading to the door, green bushes, a wooden fence, deep blue night sky with stars and a crescent moon, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_garden.png",
+    "prompt_id": "cc55e48e-f4ac-4fc8-9e17-2fe86787faf1",
+    "seed": 9102
+  },
+  "BG_lobby_happy": {
+    "prompt": "art-deco hotel lobby interior in the bright morning: golden sunlight streaming through tall windows, blue walls, elegant blue sofas, wooden floor, a golden framed landscape painting hanging proudly on the main blue wall, warm and peaceful mood, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_lobby_happy.png",
+    "prompt_id": "184639a1-a1b1-49c7-8496-ac7b59feb929",
+    "seed": 9103
+  },
+  "BG_epilogue": {
+    "prompt": "restaurant table in the morning light: cups of tea, a chocolate cake with one slice cut, plates, cozy celebration mood, blurred hotel interior behind, no characters",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\BG_epilogue.png",
+    "prompt_id": "8d9b8d11-eb5a-42c0-a929-dc42739d0d91",
+    "seed": 1013
+  },
+  "CH_emma": {
+    "prompt": "waist-up portrait of a friendly hotel receptionist woman, 28 years old, brown hair in a neat bun, simple elegant navy blue hotel uniform jacket with golden buttons, white shirt, small golden badge, soft warm smile, standing behind a wooden reception desk, centered, plain warm beige background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_emma.png",
+    "prompt_id": "721462c4-5550-43db-aa4b-03d32f79866e",
+    "seed": 9104
+  },
+  "CH_grant": {
+    "prompt": "waist-up portrait of a hotel owner man, 55 years old, grey hair and a neat grey mustache, burgundy three-piece suit with a pocket watch chain, kind anxious eyes, centered, plain warm beige background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_grant.png",
+    "prompt_id": "78a6e470-ac7f-4fad-94a5-7268b3913bba",
+    "seed": 2003
+  },
+  "CH_antonio": {
+    "prompt": "waist-up portrait of a cheerful italian chef, 41 years old, black mustache, white chef hat, wearing a large fully red apron over his white chef uniform, the apron is completely red, big warm smile, wooden spoon in one hand, centered, plain warm beige background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_antonio.png",
+    "prompt_id": "bf6243a5-068e-4dc0-b261-978b60a72176",
+    "seed": 9107
+  },
+  "CH_tim": {
+    "prompt": "waist-up portrait of a shy teenage hotel bellboy, 16 years old, soft painterly storybook illustration style, smooth shading, bareheaded, light ginger hair fully visible, many freckles on his cheeks and nose, simple navy blue hotel uniform with small golden buttons, holding a small round bellboy cap in both hands in front of his chest, nervous shy smile, slightly blushing cheeks, centered",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\CH_tim.png",
+    "prompt_id": "e37ea210-71d9-49f4-b0f9-f141f05f74c2",
+    "seed": 9109
+  },
+  "UI_title": {
+    "prompt": "night view of a cozy art-deco hotel facade with a glowing crescent-moon emblem above the entrance, rain, full moon in the sky, warm lit windows, a young detective silhouette with a trench coat walking to the doors, mysterious but inviting",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_title.png",
+    "prompt_id": "2510e26e-1c8e-4092-bfc0-a15d6ac4d0bc",
+    "seed": 3001
+  },
+  "UI_logo_emblem": {
+    "prompt": "round golden detective badge with a crescent moon and a magnifying glass inside, art-deco style, centered emblem on a dark navy background, clean and iconic",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_logo_emblem.png",
+    "prompt_id": "554f20f4-d938-4893-a7c7-8f49d9f072bb",
+    "seed": 3002
+  },
+  "UI_case_map": {
+    "prompt": "detective desk top view: city map, photos of suspects, red thread connecting pins, magnifying glass, cup of coffee, open notebook, warm lamp light",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_case_map.png",
+    "prompt_id": "dae9ccdb-efd5-4cea-aa16-971c22fef770",
+    "seed": 3003
+  },
+  "UI_dialogue_frame": {
+    "prompt": "one empty rectangular dialogue window panel for a visual novel game, beige parchment texture, rounded corners, thin golden art-deco frame, completely empty inside, isolated game UI asset, no room, no furniture, plain dark blue background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_dialogue_frame.png",
+    "prompt_id": "8b10c7ff-9752-448f-bb75-e379b346cd4a",
+    "seed": 3104
+  },
+  "UI_name_plate": {
+    "prompt": "one empty wide horizontal signboard banner, dark navy blue plate with a thin golden border, rounded corners, completely empty center, isolated game UI asset, no building, no door, plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_name_plate.png",
+    "prompt_id": "142f3872-c949-4452-8603-2b0320f22d7c",
+    "seed": 3105
+  },
+  "UI_choice_button": {
+    "prompt": "one single blank pill-shaped button with fully rounded ends, smooth cream-colored surface, thin golden outline, plain and empty, floating on a plain dark navy background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_choice_button.png",
+    "prompt_id": "64f8cc3a-742e-4d3c-b735-39be00da4f5d",
+    "seed": 3131
+  },
+  "UI_notebook": {
+    "prompt": "open detective notebook, two pages, worn leather cover, pinned notes, empty slots for clues and small photos, magnifying glass on the page, warm lamp light",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_notebook.png",
+    "prompt_id": "3751fc00-174a-423e-9130-91cbaaae86f5",
+    "seed": 3007
+  },
+  "UI_feedback_icons": {
+    "prompt": "two separate round stickers lying side by side on a plain light gray background, with a clear gap between them: the left sticker is a green circle with a thick white check mark, the right sticker is a red circle with a thick white X made of two crossed diagonal lines, flat cartoon style, both stickers fully visible and complete",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_feedback_icons.png",
+    "prompt_id": "86fc9400-c948-4ed5-ad25-fa059317a05c",
+    "seed": 3132
+  },
+  "UI_owl_hint": {
+    "prompt": "round UI button with a cute cartoon owl detective face, tiny deerstalker hat, big friendly eyes, gold ring around the button, plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_owl_hint.png",
+    "prompt_id": "ddecf3c9-a913-4ae3-b94d-6d3f92bb753b",
+    "seed": 3009
+  },
+  "UI_magnifier_cursor": {
+    "prompt": "one simple cartoon magnifying glass tilted at 45 degrees, golden round rim, brown handle, shiny glass, no stand, isolated game cursor icon, plain dark background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_magnifier_cursor.png",
+    "prompt_id": "aeffda75-451f-480f-8a7a-4fff10998ce4",
+    "seed": 3110
+  },
+  "UI_progress": {
+    "prompt": "one flat horizontal game progress bar, navy blue track with a golden border, five empty star slots, a small golden magnifying glass marker, isolated game UI element, no room, plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_progress.png",
+    "prompt_id": "4d6e5271-6b9e-44ca-b98b-7967f2149a25",
+    "seed": 3111
+  },
+  "UI_buttons_set": {
+    "prompt": "one horizontal row of six round navy blue buttons, evenly spaced, each button has one simple golden symbol: a house shape, a gear wheel, a loudspeaker, a loudspeaker with a diagonal slash, a question mark, an arrow pointing left, flat cartoon style, isolated on a plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_buttons_set.png",
+    "prompt_id": "9581d40b-0f1b-465f-9f8f-68b06c76b3ed",
+    "seed": 3133
+  },
+  "UI_translate_button": {
+    "prompt": "one round game UI button with a small earth globe and a speech bubble icon inside, navy blue and gold, flat cartoon style, isolated, plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_translate_button.png",
+    "prompt_id": "397c819e-437b-4d6f-a1db-ccf70f376387",
+    "seed": 3113
+  },
+  "UI_badge_case_closed": {
+    "prompt": "golden game achievement badge shaped like a detective shield with a crescent moon and a small ribbon, shiny cartoon style, plain dark background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\UI_badge_case_closed.png",
+    "prompt_id": "ee5bdf4c-0b61-441b-beae-ae5782349e54",
+    "seed": 3014
+  },
+  "OBJ_empty_frame": {
+    "prompt": "an empty golden picture frame hanging on a nail on a deep blue wall, the frame is completely empty, plain blue wall visible through the frame, a thin red thread caught on the nail, slightly tilted, simple game clue icon",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_empty_frame.png",
+    "prompt_id": "6d02e4e0-5118-4b03-88dd-84110b65c619",
+    "seed": 3115
+  },
+  "OBJ_broken_glass": {
+    "prompt": "close-up of a few broken glass shards lying on a dark wooden surface, simple game clue icon, isolated, plain light background, no window, no room",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_broken_glass.png",
+    "prompt_id": "f01e9cc6-e466-4927-b2aa-ae451ce16a0a",
+    "seed": 3116
+  },
+  "OBJ_footprints": {
+    "prompt": "two wet muddy shoe footprints on a dark stone floor, top-down close view, simple game clue icon, isolated, plain light background, no puddle, no torch, no room",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_footprints.png",
+    "prompt_id": "7ab4ea2e-a6e6-4a7b-8c0d-58c9e20c887a",
+    "seed": 3117
+  },
+  "OBJ_red_thread": {
+    "prompt": "close-up macro of a small curled red woolen thread lying on a plain light surface, simple game clue icon, isolated, no room, no furniture",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_red_thread.png",
+    "prompt_id": "9455ea81-85a9-4d8b-807a-f58f59e89ff1",
+    "seed": 3118
+  },
+  "OBJ_hat_box": {
+    "prompt": "large vintage round hat box, dusty pink and cream stripes, lid slightly open with a soft golden glow coming from inside, game clue icon, plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_hat_box.png",
+    "prompt_id": "4e2c5567-1f56-4bbb-a690-c6f4fac49c44",
+    "seed": 3019
+  },
+  "OBJ_painting": {
+    "prompt": "classic oil painting in an ornate golden frame: full moon over a dark river with a bridge silhouette, moonlit ripples on the water, romantic night scene",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_painting.png",
+    "prompt_id": "33523a55-026b-4119-96d6-f4871d5d13ab",
+    "seed": 3020
+  },
+  "OBJ_receipt": {
+    "prompt": "crumpled paper receipt from a spice shop with a small cinnamon stick next to it, warm light, no readable text, game clue icon, plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_receipt.png",
+    "prompt_id": "acce9873-17e3-4ab1-966f-41bd1e3b8bbb",
+    "seed": 3021
+  },
+  "OBJ_testimony": {
+    "prompt": "one single comic speech bubble icon, a white rounded bubble with a short tail at the bottom left, thick golden outline, subtle drop shadow, flat cartoon game icon, isolated on a plain light background",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_testimony.png",
+    "prompt_id": "da6067b9-9183-42ad-9058-bb5e2c87fa8c",
+    "seed": 3134
+  },
+  "OBJ_red_coat": {
+    "prompt": "one single elegant long red wool coat on a wooden hanger, front view, simple game clue icon, isolated, plain light background, no mannequin, no room",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\OBJ_red_coat.png",
+    "prompt_id": "93257137-a030-4e58-aaa2-3bdf87b818f6",
+    "seed": 3123
+  },
+  "SC_final_group": {
+    "prompt": "group illustration in a warm hotel lobby: a young detective, a receptionist, a hotel owner, a chef, a shy bellboy and a cute owl mascot celebrating together, the moon painting back on the wall, warm light, cartoon style",
+    "model": "base",
+    "file": "C:\\english-quest\\assets\\SC_final_group.png",
+    "prompt_id": "819635d4-7263-491e-84ce-b59f7c9bddba",
+    "seed": 3024
+  }
+}

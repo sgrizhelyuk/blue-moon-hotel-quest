@@ -1,0 +1,14 @@
+# Large local tooling — not part of the game repo
+tools/ComfyUI_windows_portable/
+tools/*.log
+tools/7zr.exe
+*.7z
+
+# Raw draft versions and backups — kept locally only
+assets/_versions/
+assets/preview_turbo/
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
