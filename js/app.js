@@ -40,18 +40,27 @@
 
   /* ---------------- persistence ---------------- */
 
+  var memSave = null;
+
   function save() {
-    try {
-      localStorage.setItem(SAVE_KEY, JSON.stringify({
-        scene: state.scene, pos: state.pos, clues: state.clues,
-        wrongChoices: state.wrongChoices, wrongTasks: state.wrongTasks, lang: state.lang
-      }));
-    } catch (e) { /* ignore */ }
+    var data = {
+      scene: state.scene, pos: state.pos, clues: state.clues,
+      wrongChoices: state.wrongChoices, wrongTasks: state.wrongTasks, lang: state.lang
+    };
+    memSave = data;
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
   }
   function loadSave() {
-    try { return JSON.parse(localStorage.getItem(SAVE_KEY)); } catch (e) { return null; }
+    try {
+      var s = localStorage.getItem(SAVE_KEY);
+      if (s) { return JSON.parse(s); }
+    } catch (e) { /* ignore */ }
+    return memSave;
   }
-  function clearSave() { try { localStorage.removeItem(SAVE_KEY); } catch (e) { } }
+  function clearSave() {
+    memSave = null;
+    try { localStorage.removeItem(SAVE_KEY); } catch (e) { /* ignore */ }
+  }
 
   function resetState() {
     state.scene = 0; state.pos = 0; state.clues = [];
@@ -135,6 +144,7 @@
   function renderItem() {
     var sc = SCENES[state.scene];
     if (!sc || state.pos >= sc.items.length) { nextScene(); return; }
+    if (state.typeTimer) { clearInterval(state.typeTimer); state.typeTimer = null; state.typing = false; }
     var item = sc.items[state.pos];
     state.dialogCtx = item;
 
@@ -355,11 +365,13 @@
   }
 
   function renderOrder(task) {
-    var correct = task.answer.indexOf("|") !== -1
+    var sentenceMode = task.answer.indexOf("|") !== -1;
+    var correctSentences = sentenceMode
       ? task.answer.split("|").map(function (s) { return s.trim(); })
-      : task.answer.split(/\s+/);
+      : null;
     var shuffled = task.words.slice().sort(function () { return Math.random() - 0.5; });
     var built = [];
+    var norm = function (s) { return s.toLowerCase().replace(/\s+/g, " ").trim(); };
 
     var builtBox = document.createElement("div");
     builtBox.className = "order-built";
@@ -372,18 +384,22 @@
         var c = document.createElement("button");
         c.className = "chip built";
         c.textContent = w;
-        c.onclick = function () { built.splice(i, 1); redraw(); };
+        c.onclick = function () {
+          built.splice(i, 1);
+          if (!sentenceMode) { shuffled.push(w); }
+          redraw();
+        };
         builtBox.appendChild(c);
       });
       poolBox.innerHTML = "";
-      shuffled.forEach(function (w, i) {
-        if (built.indexOf(w) !== -1 && task.answer.indexOf("|") === -1) { return; }
+      shuffled.forEach(function (w) {
+        if (built.indexOf(w) !== -1) { return; }
         var c = document.createElement("button");
         c.className = "chip";
         c.textContent = w;
         c.onclick = function () {
           built.push(w);
-          if (task.answer.indexOf("|") === -1) { shuffled.splice(shuffled.indexOf(w), 1); }
+          if (!sentenceMode) { shuffled.splice(shuffled.indexOf(w), 1); }
           redraw();
         };
         poolBox.appendChild(c);
@@ -395,11 +411,16 @@
     check.className = "mini-btn wide check";
     check.textContent = "Check";
     check.onclick = function () {
-      var ok = built.length === correct.length;
-      if (ok) {
-        for (var i = 0; i < correct.length; i++) {
-          if (built[i].toLowerCase().replace(/\s+/g, " ") !== correct[i].toLowerCase().replace(/\s+/g, " ")) { ok = false; break; }
+      var ok;
+      if (sentenceMode) {
+        ok = built.length === correctSentences.length;
+        if (ok) {
+          for (var i = 0; i < correctSentences.length; i++) {
+            if (norm(built[i]) !== norm(correctSentences[i])) { ok = false; break; }
+          }
         }
+      } else {
+        ok = built.length > 0 && norm(built.join(" ")) === norm(task.answer);
       }
       if (ok) { taskDone("Perfect order!"); }
       else {
@@ -449,7 +470,16 @@
     els.hotspots.innerHTML = "";
     var found = 0;
     var total = cfg.hotspots.length;
-    var doneTimers = [];
+
+    function finishClues() {
+      els.dialogue.hidden = false;
+      els.nameplate.hidden = true;
+      els.lineRu.hidden = true;
+      els.lineText.className = "line narration";
+      els.lineText.textContent = "You found everything. Time to continue.";
+      els.btnNext.hidden = false;
+      els.hotspots.innerHTML = "";
+    }
 
     function place(x, y, w, h, cls, handler) {
       var d = document.createElement("div");
@@ -463,32 +493,32 @@
       return d;
     }
 
+    function markFound(d, clue) {
+      d.dataset.found = "1";
+      d.classList.add("found");
+      if (clue && clue.img) {
+        var ic = document.createElement("img");
+        ic.className = "found-icon";
+        ic.src = clue.img;
+        d.appendChild(ic);
+      }
+    }
+
     cfg.hotspots.forEach(function (hs) {
       var clue = CLUES[hs.id];
       var d = place(hs.x, hs.y, hs.w, hs.h, "clue", function () {
         if (d.dataset.found) { return; }
-        d.dataset.found = "1";
-        d.classList.add("found");
+        markFound(d, clue);
         addClue(hs.id, false);
-        if (clue && clue.img) {
-          var ic = document.createElement("img");
-          ic.className = "found-icon";
-          ic.src = clue.img;
-          d.appendChild(ic);
-        }
         found++;
         if (found === total) {
-          doneTimers.push(setTimeout(function () {
-            els.dialogue.hidden = false;
-            els.nameplate.hidden = true;
-            els.lineRu.hidden = true;
-            els.lineText.className = "line narration";
-            els.lineText.textContent = "You found everything. Time to continue.";
-            els.btnNext.hidden = false;
-            els.hotspots.innerHTML = "";
-          }, 900));
+          setTimeout(finishClues, 900);
         }
       });
+      if (state.clues.indexOf(hs.id) !== -1) {
+        markFound(d, clue);
+        found++;
+      }
     });
 
     (cfg.duds || []).forEach(function (dud) {
@@ -496,6 +526,10 @@
         toast(dud.msg, "info");
       });
     });
+
+    if (total > 0 && found === total) {
+      finishClues();
+    }
   }
 
   /* ---------------- notebook & clues ---------------- */
@@ -659,4 +693,7 @@
     initTitle();
     showScreen("title");
   });
+
+  /* test/debug handle */
+  window.__BMH__ = { state: state, scenes: SCENES, clues: CLUES };
 })();

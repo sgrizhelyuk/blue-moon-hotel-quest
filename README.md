@@ -19,6 +19,18 @@ python -m http.server 8080
 # затем: http://localhost:8080/
 ```
 
+## Тесты
+
+Headless-прогон игры (полное прохождение, ошибочные ветки, перевод, блокнот, сохранения, soft-lock улик):
+
+```bash
+npm install jsdom        # один раз, вне репозитория или в tools/
+node tools/prototype-test.js
+# либо против другого сервера:
+set BMH_URL=https://sgrizhelyuk.github.io/blue-moon-hotel-quest/
+node tools/prototype-test.js
+```
+
 ## Структура проекта
 
 ```
